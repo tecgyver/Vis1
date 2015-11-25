@@ -177,8 +177,8 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BresenhamRayCaster.h" />
-    <ClInclude Include="CPURenderer.h" />
+    <ClInclude Include="src\BresenhamRayCaster.h" />
+    <ClInclude Include="src\CPURenderer.h" />
     <ClInclude Include="generated\ui_MainWindow.h" />
     <ClInclude Include="src\MultiSet.h" />
     <ClInclude Include="src\Vector.h" />
