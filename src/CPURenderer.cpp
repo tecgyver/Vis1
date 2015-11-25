@@ -19,14 +19,14 @@ void CPURenderer::render(QImage& target, Volume& data)
 	{
 		for (int x = 0; x < target.width(); x++)
 		{
-			auto& samples = m_raycaster->cast(QVector3D(x, y, 0), QVector3D(0, 0, 1), data);
-			float max = -1;
+			auto& samples = m_raycaster->cast(QVector3D(x, 0, y), QVector3D(0, 1, 0), data);
+			float max = 0;
 			for (auto &sample : samples)
 			{
 				if (sample > max)
 					max = sample;
 			}
-			target.setPixel(QPoint(x, y), QColor(max * 255, max * 255, max * 255).rgb());
+			target.setPixel(QPoint(x, y), QColor((int)(max * 255), (int)(max * 255), (int)(max * 255)).rgba());
 		}
 	}
 }
