@@ -10,6 +10,6 @@ class BresenhamRayCaster
 public:
 	BresenhamRayCaster();
 	~BresenhamRayCaster();
-	//std::vector<float> cast(QVector3D& location, QVector3D& direction, Volume& data); //Parameters: start position, direction
+	std::vector<float> cast(QVector3D& location, QVector3D& direction, Volume& data); //Parameters: start position, direction
 };
 
