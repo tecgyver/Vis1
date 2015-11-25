@@ -37,10 +37,10 @@
     <ClCompile Include="src\MultiSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CPURenderer.cpp">
+    <ClCompile Include="src\BresenhamRayCaster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BresenhamRayCaster.cpp">
+    <ClCompile Include="src\CPURenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

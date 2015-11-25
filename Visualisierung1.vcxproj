@@ -142,9 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BresenhamRayCaster.cpp" />
-    <ClCompile Include="CPURenderer.cpp" />
     <ClCompile Include="generated\moc_MainWindow.cpp" />
+    <ClCompile Include="src\BresenhamRayCaster.cpp" />
+    <ClCompile Include="src\CPURenderer.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
     <ClCompile Include="src\MultiSet.cpp" />
