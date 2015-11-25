@@ -1,0 +1,30 @@
+﻿Build started 17.11.2015 10:58:12.
+     1>Project "D:\Uni\vis1\visualisierung1_vs2013\Visualisierung1.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         MOC MainWindow.h
+         UIC MainWindow.ui
+       ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 2013\VC\bin\CL.exe /c /Isrc /Igenerated /Ilib /Ilib\glew\include /Ilib\qt\include /Ilib\qt\include\QtCLucene /Ilib\qt\include\QtCore /Ilib\qt\include\QtGui /Ilib\qt\include\QtOpenGL /Ilib\qt\include\QtOpenGLExtensions /Ilib\qt\include\QtPlatformSupport /Ilib\qt\include\QtUiTools /Ilib\qt\include\QtWidgets /Ilib\qt\include\QtZlib /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"tmp\Win32\Release\\" /Fd"tmp\Win32\Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt generated\moc_MainWindow.cpp src\Main.cpp src\MainWindow.cpp src\MultiSet.cpp src\Vector.cpp src\VectorField.cpp src\Volume.cpp
+         moc_MainWindow.cpp
+         Main.cpp
+         MainWindow.cpp
+         MultiSet.cpp
+         Vector.cpp
+         VectorField.cpp
+         Volume.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"bin\Win32\Release\Visualisierung1.exe" /NOLOGO /LIBPATH:lib\glew\lib /LIBPATH:lib\qt\lib\Win32 glew32.lib opengl32.lib glu32.lib Qt5CLucene.lib Qt5Core.lib Qt5Gui.lib Qt5OpenGL.lib Qt5OpenGLExtensions.lib Qt5PlatformSupport.lib Qt5UiTools.lib Qt5Widgets.lib qtmain.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"bin\Win32\Release\Visualisierung1.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin\Win32\Release\Visualisierung1.lib" /MACHINE:X86 /SAFESEH tmp\Win32\Release\moc_MainWindow.obj
+         tmp\Win32\Release\Main.obj
+         tmp\Win32\Release\MainWindow.obj
+         tmp\Win32\Release\MultiSet.obj
+         tmp\Win32\Release\Vector.obj
+         tmp\Win32\Release\VectorField.obj
+         tmp\Win32\Release\Volume.obj
+         Generating code
+         Finished generating code
+         Visualisierung1.vcxproj -> D:\Uni\vis1\visualisierung1_vs2013\bin\Win32\Release\Visualisierung1.exe
+     1>Done Building Project "D:\Uni\vis1\visualisierung1_vs2013\Visualisierung1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.73
