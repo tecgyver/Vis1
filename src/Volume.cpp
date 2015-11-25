@@ -134,6 +134,11 @@ Volume::~Volume()
 
 const Voxel& Volume::voxel(const int x, const int y, const int z) const
 {
+	if (x < 0 || x >= m_Width ||
+		y < 0 || y >= m_Height ||
+		z < 0 || z >= m_Depth)
+		return Voxel(0.f);
+
 	return m_Voxels[x + y*m_Width + z*m_Width*m_Height];
 }
 
@@ -195,16 +200,16 @@ bool Volume::loadFromFile(QString filename, QProgressBar* progressBar)
 	fread(&uWidth, sizeof(unsigned short), 1, fp);
 	fread(&uHeight, sizeof(unsigned short), 1, fp);
 	fread(&uDepth, sizeof(unsigned short), 1, fp);
-	
+
 	m_Width = int(uWidth);
 	m_Height = int(uHeight);
 	m_Depth = int(uDepth);
 
 	// check dataset dimensions
 	if (
-			m_Width <= 0 || m_Width > 1000 ||
-			m_Height <= 0 || m_Height > 1000 ||
-			m_Depth <= 0 || m_Depth > 1000)
+		m_Width <= 0 || m_Width > 1000 ||
+		m_Height <= 0 || m_Height > 1000 ||
+		m_Depth <= 0 || m_Depth > 1000)
 	{
 		std::cerr << "+ Error loading file: " << filename.toStdString() << std::endl;
 		std::cerr << "Unvalid dimensions - probably loaded .dat flow file instead of .gri file?" << std::endl;
@@ -242,7 +247,7 @@ bool Volume::loadFromFile(QString filename, QProgressBar* progressBar)
 			whatever++;
 		}
 		m_Voxels[i] = Voxel(value);
-		
+
 		progressBar->setValue(10 + i);
 	}
 
@@ -251,4 +256,32 @@ bool Volume::loadFromFile(QString filename, QProgressBar* progressBar)
 	std::cout << "Loaded VOLUME with dimensions " << m_Width << " x " << m_Height << " x " << m_Depth << std::endl;
 
 	return true;
+}
+
+const float Volume::value(const float x, const float y, const float z) const
+{
+	// [-0.5, 0.5]
+	float xFromCenter = std::fmodf(x, 1) - 0.5;
+	float yFromCenter = std::fmodf(y, 1) - 0.5;
+	float zFromCenter = std::fmodf(z, 1) - 0.5;
+
+	// {-1, NaN, 1}
+	int xOff = xFromCenter / std::abs(xFromCenter);
+	int yOff = yFromCenter / std::abs(yFromCenter);
+	int zOff = zFromCenter / std::abs(zFromCenter);
+
+	xFromCenter = std::abs(xFromCenter);
+	yFromCenter = std::abs(yFromCenter);
+	zFromCenter = std::abs(zFromCenter);
+
+	int count = 1;
+	return ((1 - xFromCenter)*(1 - yFromCenter)*(1 - zFromCenter)*voxel(x, y, z).getValue()) +
+		((xFromCenter)*(1 - yFromCenter)*(1 - zFromCenter)*voxel(x + xOff, y, z).getValue()) +
+		((1 - xFromCenter)*(yFromCenter)*(1 - zFromCenter)*voxel(x, y + yOff, z).getValue()) +
+		((xFromCenter)*(yFromCenter)*(1 - zFromCenter)*voxel(x + xOff, y + yOff, z).getValue()) +
+		((1 - xFromCenter)*(1 - yFromCenter)*(zFromCenter)*voxel(x, y, z + zOff).getValue()) +
+		((xFromCenter)*(1 - yFromCenter)*(zFromCenter)*voxel(x + xOff, y, z + zOff).getValue()) +
+		((1 - xFromCenter)*(yFromCenter)*(zFromCenter)*voxel(x, y + yOff, z + zOff).getValue()) +
+		((xFromCenter)*(yFromCenter)*(zFromCenter)*voxel(x + xOff, y + yOff, z + zOff).getValue());
+
 }

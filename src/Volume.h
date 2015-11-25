@@ -73,6 +73,7 @@ class Volume
 		const Voxel&			voxel(const int i) const;
 		const Voxel&			voxel(const int x, const int y, const int z) const;
 		const Voxel*			voxels() const;
+		const float				value(const float x, const float y, const float z) const;
 
 		const int				width() const;
 		const int				height() const;
