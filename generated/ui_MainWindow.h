@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -46,6 +47,7 @@ public:
     QLabel *label_3;
     QSlider *sl_yTranslate;
     QOpenGLWidget *openGLWidget;
+    QGraphicsView *graphicsView;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -111,7 +113,12 @@ public:
         openGLWidget = new QOpenGLWidget(centralwidget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
         openGLWidget->setGeometry(QRect(9, 59, 991, 611));
+        graphicsView = new QGraphicsView(centralwidget);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setGeometry(QRect(10, 60, 991, 611));
         MainWindow->setCentralWidget(centralwidget);
+        openGLWidget->raise();
+        graphicsView->raise();
         groupBox->raise();
         labelTop->raise();
         progressBar->raise();
@@ -120,7 +127,6 @@ public:
         sl_AlphaCompositing->raise();
         label_2->raise();
         gb_transform->raise();
-        openGLWidget->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1192, 21));

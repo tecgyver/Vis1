@@ -204,6 +204,18 @@
      </rect>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>991</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>openGLWidget</zorder>
+   <zorder>graphicsView</zorder>
    <zorder>groupBox</zorder>
    <zorder>labelTop</zorder>
    <zorder>progressBar</zorder>
@@ -212,7 +224,6 @@
    <zorder>sl_AlphaCompositing</zorder>
    <zorder>label_2</zorder>
    <zorder>gb_transform</zorder>
-   <zorder>openGLWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
