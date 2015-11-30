@@ -14,6 +14,7 @@
 #include <QProgressBar>
 #include <QStatusBar>
 #include <QVariant>
+#include <QGraphicsPixmapItem>
 
 
 class MainWindow : public QMainWindow

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,13 +14,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QOpenGLWidget>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QWidget>
@@ -35,7 +35,6 @@ public:
     QWidget *centralwidget;
     QLabel *labelTop;
     QProgressBar *progressBar;
-    QGraphicsView *graphicsView;
     QCheckBox *cb_MIP;
     QCheckBox *cb_AlphaCompositing;
     QSlider *sl_AlphaCompositing;
@@ -46,6 +45,7 @@ public:
     QLabel *label;
     QLabel *label_3;
     QSlider *sl_yTranslate;
+    QOpenGLWidget *openGLWidget;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -69,9 +69,6 @@ public:
         progressBar->setGeometry(QRect(657, 20, 521, 23));
         progressBar->setValue(0);
         progressBar->setTextVisible(false);
-        graphicsView = new QGraphicsView(centralwidget);
-        graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(5, 61, 991, 611));
         cb_MIP = new QCheckBox(centralwidget);
         cb_MIP->setObjectName(QStringLiteral("cb_MIP"));
         cb_MIP->setGeometry(QRect(1020, 90, 70, 17));
@@ -111,16 +108,19 @@ public:
         sl_yTranslate->setValue(50);
         sl_yTranslate->setOrientation(Qt::Horizontal);
         sl_yTranslate->setTickPosition(QSlider::TicksBelow);
+        openGLWidget = new QOpenGLWidget(centralwidget);
+        openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
+        openGLWidget->setGeometry(QRect(9, 59, 991, 611));
         MainWindow->setCentralWidget(centralwidget);
         groupBox->raise();
         labelTop->raise();
         progressBar->raise();
-        graphicsView->raise();
         cb_MIP->raise();
         cb_AlphaCompositing->raise();
         sl_AlphaCompositing->raise();
         label_2->raise();
         gb_transform->raise();
+        openGLWidget->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1192, 21));

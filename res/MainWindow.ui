@@ -46,16 +46,6 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>61</y>
-      <width>991</width>
-      <height>611</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="cb_MIP">
     <property name="geometry">
      <rect>
@@ -204,15 +194,25 @@
      </property>
     </widget>
    </widget>
+   <widget class="QOpenGLWidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>59</y>
+      <width>991</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>groupBox</zorder>
    <zorder>labelTop</zorder>
    <zorder>progressBar</zorder>
-   <zorder>graphicsView</zorder>
    <zorder>cb_MIP</zorder>
    <zorder>cb_AlphaCompositing</zorder>
    <zorder>sl_AlphaCompositing</zorder>
    <zorder>label_2</zorder>
    <zorder>gb_transform</zorder>
+   <zorder>openGLWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

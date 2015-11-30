@@ -110,12 +110,12 @@ void MainWindow::initRendering()
 	delete m_renderImageScene;
 
 	m_renderer = new CPURenderer();
-	m_renderImage = new QImage(m_Ui->graphicsView->width() - (2 * m_Ui->graphicsView->frameWidth()), m_Ui->graphicsView->height() - (2 * m_Ui->graphicsView->frameWidth()), QImage::Format::Format_RGB888);
+	/*m_renderImage = new QImage(m_Ui->graphicsView->width() - (2 * m_Ui->graphicsView->frameWidth()), m_Ui->graphicsView->height() - (2 * m_Ui->graphicsView->frameWidth()), QImage::Format::Format_RGB888);
 	m_renderImageScene = new QGraphicsScene(m_Ui->graphicsView->sceneRect());
 	m_renderImageItem = new QGraphicsPixmapItem(QPixmap::fromImage(*m_renderImage));
 
 	m_renderImageScene->addItem(m_renderImageItem);
-	m_Ui->graphicsView->setScene(m_renderImageScene);
+	m_Ui->graphicsView->setScene(m_renderImageScene);*/
 }
 
 void MainWindow::render()

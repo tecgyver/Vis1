@@ -1,13 +1,18 @@
 /* Everything */
 
 /* License information */
-#define QT_PRODUCT_LICENSEE "Open Source"
-#define QT_PRODUCT_LICENSE "OpenSource"
+#define QT_PRODUCT_LICENSEE "Builder Qt"
+#define QT_PRODUCT_LICENSE "Enterprise"
 
 
 // Compiler sub-arch support
-#define QT_COMPILER_SUPPORTS_SSE2
-#define QT_COMPILER_SUPPORTS_SSE3
+#define QT_COMPILER_SUPPORTS_SSE2 1
+#define QT_COMPILER_SUPPORTS_SSE3 1
+#define QT_COMPILER_SUPPORTS_SSSE3 1
+#define QT_COMPILER_SUPPORTS_SSE4_1 1
+#define QT_COMPILER_SUPPORTS_SSE4_2 1
+#define QT_COMPILER_SUPPORTS_AVX 1
+#define QT_COMPILER_SUPPORTS_AVX2 1
 
 // Compile time features
 #if defined(QT_LARGEFILE_SUPPORT) && defined(QT_NO_LARGEFILE_SUPPORT)
@@ -20,12 +25,6 @@
 # undef QT_NO_CUPS
 #elif !defined(QT_NO_CUPS)
 # define QT_NO_CUPS
-#endif
-
-#if defined(QT_NO_DBUS) && defined(QT_DBUS)
-# undef QT_NO_DBUS
-#elif !defined(QT_NO_DBUS)
-# define QT_NO_DBUS
 #endif
 
 #if defined(QT_NO_EVDEV) && defined(QT_EVDEV)
@@ -50,12 +49,6 @@
 # undef QT_NO_GLIB
 #elif !defined(QT_NO_GLIB)
 # define QT_NO_GLIB
-#endif
-
-#if defined(QT_NO_HARFBUZZ) && defined(QT_HARFBUZZ)
-# undef QT_NO_HARFBUZZ
-#elif !defined(QT_NO_HARFBUZZ)
-# define QT_NO_HARFBUZZ
 #endif
 
 #if defined(QT_NO_ICONV) && defined(QT_ICONV)
@@ -110,6 +103,18 @@
 # undef QT_NO_STYLE_WINDOWSMOBILE
 #elif !defined(QT_NO_STYLE_WINDOWSMOBILE)
 # define QT_NO_STYLE_WINDOWSMOBILE
+#endif
+
+#if defined(QT_NO_TSLIB) && defined(QT_TSLIB)
+# undef QT_NO_TSLIB
+#elif !defined(QT_NO_TSLIB)
+# define QT_NO_TSLIB
+#endif
+
+#if defined(QT_OPENGL_DYNAMIC) && defined(QT_NO_OPENGL_DYNAMIC)
+# undef QT_OPENGL_DYNAMIC
+#elif !defined(QT_OPENGL_DYNAMIC)
+# define QT_OPENGL_DYNAMIC
 #endif
 
 #if defined(QT_POINTER_SIZE) && defined(QT_NO_POINTER_SIZE)
