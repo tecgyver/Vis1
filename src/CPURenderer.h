@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QImage>
+#include <cmath>
 
 #include "Volume.h"
 #include "BresenhamRayCaster.h"
@@ -9,10 +10,25 @@ class CPURenderer
 {
 private:
 	BresenhamRayCaster* m_raycaster;
+
+	QRgb mip(std::vector<float> samples);
+	QRgb alphaCompositing(std::vector<float> samples, float treshold);
+
+	int sampleRate;
+	float globalMax;
 public:
 	CPURenderer();
 	~CPURenderer();
 
-	void render(QImage& target, Volume& data);
+	bool mipEnabled;
+	bool alphaCompositingEnabled;
+	float alphaCompositingTreshold;
+	int xTranslate;
+	int yTranslate;
+
+	void preprocessData(Volume& data);
+	//void sample(Volume& data, int width, int height);
+	void sampleAndRender(QImage& target, Volume& data);
+	//void render(QImage& target);
 };
 

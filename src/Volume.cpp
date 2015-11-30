@@ -258,6 +258,20 @@ bool Volume::loadFromFile(QString filename, QProgressBar* progressBar)
 	return true;
 }
 
+const void Volume::initVolume()
+{
+	for (int z = 0; z < m_Depth; z++)
+	{
+		for (int y = 0; y < m_Height; y++)
+		{
+			for (int x = 0; x < m_Width; x++)
+			{
+
+			}
+		}
+	}
+}
+
 const float Volume::value(const float x, const float y, const float z) const
 {
 	// [-0.5, 0.5]

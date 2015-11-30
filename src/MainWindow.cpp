@@ -122,7 +122,17 @@ void MainWindow::render()
 {
 	if (m_volumeLoaded)
 	{
-		m_renderer->render(*m_renderImage, *m_Volume);
+		m_renderer->mipEnabled = m_Ui->cb_MIP->isChecked();
+		m_renderer->alphaCompositingEnabled = m_Ui->cb_AlphaCompositing->isChecked();
+		m_renderer->alphaCompositingTreshold = m_Ui->sl_AlphaCompositing->value();
+
+		m_renderer->xTranslate = m_Ui->sl_xTranslate->value();
+		m_renderer->yTranslate = m_Ui->sl_yTranslate->value();
+
+		std::cout << m_renderer->alphaCompositingTreshold << std::endl;
+
+		m_renderer->sampleAndRender(*m_renderImage, *m_Volume);
+
 		m_renderImageItem->setPixmap(QPixmap::fromImage(*m_renderImage));
 	}
 }
