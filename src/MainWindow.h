@@ -64,6 +64,9 @@ class MainWindow : public QMainWindow
 
 		void								render();
 		void								initRendering();
+
+		private slots:
+		void								clickedSlot();
 };
 
 #endif

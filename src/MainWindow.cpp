@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QPainter>
 #include <QGraphicsPixmapItem>
+#include <qdial.h>
 #include <qpixmap.h>
 
 Ui_MainWindow* MainWindow::m_Ui;
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 	
 	connect(m_Ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFileAction()));
 	connect(m_Ui->actionClose, SIGNAL(triggered()), this, SLOT(closeAction()));
+	connect(m_Ui->bu_render, SIGNAL(clicked()), this, SLOT(clickedSlot()));
 }
 
 MainWindow::~MainWindow()
@@ -112,10 +114,15 @@ void MainWindow::render()
 		m_renderer->alphaCompositingEnabled = m_Ui->cb_AlphaCompositing->isChecked();
 		m_renderer->alphaCompositingTreshold = m_Ui->sl_AlphaCompositing->value();
 
+		m_renderer->sampleSize = m_Ui->te_sampleSize->toPlainText().toInt();
+
 		m_renderer->xTranslate = m_Ui->sl_xTranslate->value();
 		m_renderer->yTranslate = m_Ui->sl_yTranslate->value();
 
-		std::cout << m_renderer->alphaCompositingTreshold << std::endl;
+		m_renderer->xRotateEnabled = m_Ui->cb_rotateX->isChecked();
+		m_renderer->yRotateEnabled = m_Ui->cb_rotateY->isChecked();
+		m_renderer->xRotateDeg = m_Ui->sl_xRotate->value();
+		m_renderer->yRotateDeg = m_Ui->sl_yRotate->value();
 
 		m_renderer->sampleAndRender(*m_renderImage, *m_Volume);
 
@@ -126,4 +133,9 @@ void MainWindow::render()
 void MainWindow::closeAction()
 {
 	close();
+}
+
+void MainWindow::clickedSlot()
+{
+	render();
 }

@@ -22,9 +22,17 @@ public:
 
 	bool mipEnabled;
 	bool alphaCompositingEnabled;
+
+	int sampleSize;
+
 	float alphaCompositingTreshold;
 	int xTranslate;
 	int yTranslate;
+
+	bool xRotateEnabled;
+	bool yRotateEnabled;
+	int xRotateDeg;
+	int yRotateDeg;
 
 	void preprocessData(Volume& data);
 	//void sample(Volume& data, int width, int height);

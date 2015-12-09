@@ -4,7 +4,6 @@
 CPURenderer::CPURenderer()
 {
 	m_raycaster = new BresenhamRayCaster();
-	sampleRate = 20;
 	globalMax = 0;
 }
 
@@ -33,7 +32,9 @@ void CPURenderer::sampleAndRender(QImage& target, Volume& data)
 {
 	int width = target.width();
 	int height = target.height();
-	float sampleDistance = data.depth() / sampleRate;
+	float sampleDistance = data.depth() / sampleSize;
+	//float sampleDistance = data.width() / sampleRate;
+	//float sampleDistance = sqrt(data.width() * data.depth()) / sampleRate;
 
 	/*
 	for (float y = 0; y < height / 2.f; y += 0.5f)
@@ -57,7 +58,12 @@ void CPURenderer::sampleAndRender(QImage& target, Volume& data)
 	//int xOffset = width / 2.f - data.width() / 2.f;
 	//int yOffset = height / 2.f - data.height() / 2.f;
 
-	//(width * (xTranslate / 100)) - (data.width() * (xTranslate / 100));
+	QVector2D angle = QVector2D(xRotateDeg, yRotateDeg);
+	float factorX = cos(yRotateDeg * 0.0174533); // degrees to radiants
+	float factorZ = sin(yRotateDeg * 0.0174533);
+
+	float factorX_Y = cos(xRotateDeg * 0.0174533);
+	float factorX_Z = sin(xRotateDeg * 0.0174533);
 
 	int xOffset = (float)(width - data.width()) * ((float)xTranslate / 100.f);
 	int yOffset = (float)(height - data.height()) * ((float)yTranslate / 100.f);
@@ -66,7 +72,37 @@ void CPURenderer::sampleAndRender(QImage& target, Volume& data)
 	{
 		for (float x = 0; x < width; x += 1)
 		{
-			auto& samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, -10), QVector3D(0, 0, sampleDistance), data);
+			//Rotation im Uhrzeigersinn um y-Achse. 
+			std::vector<float>& samples = std::vector<float>(0);
+
+			if (yRotateEnabled) {
+				if (yRotateDeg < 90)
+					samples = m_raycaster->cast(QVector3D((x - xOffset) * factorX, y - yOffset, x * -factorZ), QVector3D(sampleDistance * factorZ, 0, sampleDistance * factorX), data, angle);
+				else if (yRotateDeg < 180)
+					samples = m_raycaster->cast(QVector3D((x - xOffset) * -factorX, y - yOffset, (x - xOffset) * factorZ), QVector3D(sampleDistance * factorZ, 0, sampleDistance * -factorX), data, angle);
+				else if (yRotateDeg < 270)
+					samples = m_raycaster->cast(QVector3D((x - xOffset) * -factorX, y - yOffset, x * factorZ + data.depth()), QVector3D(sampleDistance * factorZ, 0, sampleDistance * factorX), data, angle);
+				else
+					samples = m_raycaster->cast(QVector3D(x * factorX + data.width(), y - yOffset, (x - xOffset) * -factorZ), QVector3D(sampleDistance * factorZ, 0, sampleDistance * factorX), data, angle);
+			} 
+			else if (xRotateEnabled) //xRotateEnabled
+			{
+				if (xRotateDeg < 90)
+					samples = m_raycaster->cast(QVector3D(x - xOffset, (y - yOffset) * factorX_Y, x * factorX_Z), QVector3D(0, sampleDistance * factorX_Z, sampleDistance * factorX_Y), data, angle);
+				else if (xRotateDeg < 180)
+					samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, (x - xOffset) * factorZ), QVector3D(0, 0, sampleDistance * -factorX), data, angle);
+				else if (xRotateDeg < 270)
+					samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, x * factorZ + data.depth()), QVector3D(0, 0, sampleDistance * factorX), data, angle);
+				else
+					samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, (x - xOffset) * -factorZ), QVector3D(0, 0, sampleDistance * -factorX), data, angle);
+			}
+			else
+			{
+				samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, 0), QVector3D(0, 0, sampleDistance), data, QVector2D(0, 0));
+			}
+
+
+			//auto& samples = m_raycaster->cast(QVector3D(x - xOffset, y - yOffset, 0), QVector3D(0, 0, sampleDistance), data);
 
 			QRgb color;
 			if (mipEnabled)
