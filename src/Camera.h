@@ -13,8 +13,5 @@ namespace entities
 		float pitch;
 		float yaw;
 		float roll;
-		void move(long double timePassed);
-
-	private:
 	};
 }

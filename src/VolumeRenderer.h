@@ -20,6 +20,5 @@ namespace renderEngine
 
 		void prepareVolumeRenderEntity(VolumeRenderEntity* VolumeRenderEntity);
 		void unbindTexturedModel();
-		void loadModelMatrix(VolumeRenderEntity* VolumeRenderEntity);
 	};
 }

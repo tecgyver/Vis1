@@ -53,6 +53,8 @@ public:
     QCheckBox *cb_rotateY;
     QSlider *sl_yRotate;
     QSlider *sl_xRotate;
+    QSlider *sl_zRotate;
+    QCheckBox *cb_rotateZ;
     RaycastRenderingWidget *openGLWidget;
     QPushButton *bu_render;
     QMenuBar *menubar;
@@ -148,6 +150,17 @@ public:
         sl_xRotate->setOrientation(Qt::Horizontal);
         sl_xRotate->setTickPosition(QSlider::TicksBelow);
         sl_xRotate->setTickInterval(45);
+        sl_zRotate = new QSlider(gb_transform);
+        sl_zRotate->setObjectName(QStringLiteral("sl_zRotate"));
+        sl_zRotate->setGeometry(QRect(10, 320, 151, 22));
+        sl_zRotate->setMaximum(359);
+        sl_zRotate->setValue(0);
+        sl_zRotate->setOrientation(Qt::Horizontal);
+        sl_zRotate->setTickPosition(QSlider::TicksBelow);
+        sl_zRotate->setTickInterval(45);
+        cb_rotateZ = new QCheckBox(gb_transform);
+        cb_rotateZ->setObjectName(QStringLiteral("cb_rotateZ"));
+        cb_rotateZ->setGeometry(QRect(10, 290, 151, 17));
         openGLWidget = new RaycastRenderingWidget(centralwidget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
         openGLWidget->setGeometry(QRect(9, 59, 991, 611));
@@ -210,6 +223,7 @@ public:
         label_3->setText(QApplication::translate("MainWindow", "Y-Translate", 0));
         cb_rotateX->setText(QApplication::translate("MainWindow", "Rotate around x-Axis [deg]", 0));
         cb_rotateY->setText(QApplication::translate("MainWindow", "Rotate around y-Axis [deg]", 0));
+        cb_rotateZ->setText(QApplication::translate("MainWindow", "Rotate around z-Axis [deg]", 0));
         bu_render->setText(QApplication::translate("MainWindow", "Render", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi

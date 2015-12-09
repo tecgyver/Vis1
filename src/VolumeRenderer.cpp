@@ -23,14 +23,9 @@ void VolumeRenderer::render(Camera& camera, std::vector<VolumeRenderEntity*> Vol
 	for (auto* VolumeRenderEntity : VolumeRenderEntityList)
 	{
 		prepareVolumeRenderEntity(VolumeRenderEntity);
-		loadModelMatrix(VolumeRenderEntity);
 
 		glm::mat4 viewMatrix;
 		Maths::createViewMatrix(viewMatrix, camera);
-		glm::mat4 modelViewMatrix = viewMatrix * glm::mat4();
-		shader.loadModelView(modelViewMatrix);
-		glm::vec4 rayOrigin(glm::transpose(modelViewMatrix) * glm::vec4(camera.position, 1.0f));
-		shader.loadRayOrigin(glm::vec3(rayOrigin));
 		glDrawElements(GL_TRIANGLES, VolumeRenderEntity->getModel()->getVertexCount(), GL_UNSIGNED_INT, 0);
 		unbindTexturedModel();
 	}
@@ -56,11 +51,4 @@ void VolumeRenderer::unbindTexturedModel()
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
 	glBindVertexArray(0);
-}
-
-void VolumeRenderer::loadModelMatrix(VolumeRenderEntity* VolumeRenderEntity)
-{
-	glm::mat4 transformationMatrix;
-	Maths::createTransformationMatrix(transformationMatrix, glm::vec3(0, 0, 0), 0, 0, 0, 1);
-	shader.loadTransformationMatrix(transformationMatrix);
 }

@@ -21,11 +21,6 @@ MasterRenderer::MasterRenderer(int _width, int _height)
 
 	volumeShader = new VolumeShader();
 	volumeShader->init();
-	volumeShader->start();
-	volumeShader->loadWindowSize(glm::vec2(_width, _height));
-	float focalLength = 1.0f / tan(FOV / 2);
-	volumeShader->loadFocalLength(focalLength);
-	volumeShader->stop();
 
 	volumeRenderer = new VolumeRenderer(*volumeShader);
 }

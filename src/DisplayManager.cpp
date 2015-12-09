@@ -1,9 +1,7 @@
 #include "DisplayManager.h"
 #include <iostream>
-#include "Keyboard.h"
 
 using namespace renderEngine;
-using namespace input;
 
 RaycastRenderingWidget* DisplayManager::WINDOW = nullptr;
 int DisplayManager::width;
@@ -73,12 +71,7 @@ void DisplayManager::critError(std::string& errorMsg, int exitcode)
 
 bool DisplayManager::windowShouldUpdate()
 {
-	return Keyboard::getKeyPressed(Qt::Key_W)
-		|| Keyboard::getKeyPressed(Qt::Key_S)
-		|| Keyboard::getKeyPressed(Qt::Key_A)
-		|| Keyboard::getKeyPressed(Qt::Key_D)
-		|| Keyboard::getKeyPressed(Qt::Key_Space)
-		|| Keyboard::getKeyPressed(Qt::Key_Control);
+	return true;
 }
 
 void DisplayManager::setTitle(std::string& title)

@@ -149,7 +149,6 @@
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\CPURenderer.cpp" />
     <ClCompile Include="src\DisplayManager.cpp" />
-    <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\Loader.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\RenderController.cpp" />
@@ -194,7 +193,6 @@
   <ItemGroup>
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\DisplayManager.h" />
-    <ClInclude Include="src\Keyboard.h" />
     <ClInclude Include="src\Loader.h" />
     <ClInclude Include="src\RenderController.h" />
     <ClInclude Include="src\MasterRenderer.h" />
