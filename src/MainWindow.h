@@ -26,6 +26,8 @@ class MainWindow : public QMainWindow
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
 
+		static Ui_MainWindow *m_Ui;
+
 	
 	protected slots :
 
@@ -35,9 +37,7 @@ class MainWindow : public QMainWindow
 
 	private:
 
-		// USER INTERFACE ELEMENTS
-
-		Ui_MainWindow						*m_Ui;
+		
 
 
 		// DATA 
@@ -60,10 +60,6 @@ class MainWindow : public QMainWindow
 		MultiSet							*m_MultiSet;					// for Multivariate Data
 
 		bool								m_volumeLoaded;
-		QImage								*m_renderImage;
-		CPURenderer							*m_renderer;
-		QGraphicsScene						*m_renderImageScene;
-		QGraphicsPixmapItem					*m_renderImageItem;
 
 
 		void								render();

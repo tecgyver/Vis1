@@ -68,10 +68,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
@@ -91,7 +93,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>lib\glew\lib;lib\qt\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32d.lib;opengl32.lib;glu32.lib;Qt5CLucened.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;Qt5OpenGLExtensionsd.lib;Qt5PlatformSupportd.lib;Qt5UiToolsd.lib;Qt5Widgetsd.lib;qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;Qt5CLucened.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;Qt5OpenGLExtensionsd.lib;Qt5PlatformSupportd.lib;Qt5UiToolsd.lib;Qt5Widgetsd.lib;qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -144,12 +146,25 @@
   <ItemGroup>
     <ClCompile Include="generated\moc_MainWindow.cpp" />
     <ClCompile Include="src\BresenhamRayCaster.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\CPURenderer.cpp" />
+    <ClCompile Include="src\DisplayManager.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\Loader.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\RenderController.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
+    <ClCompile Include="src\MasterRenderer.cpp" />
+    <ClCompile Include="src\Maths.cpp" />
     <ClCompile Include="src\MultiSet.cpp" />
+    <ClCompile Include="src\RawModel.cpp" />
+    <ClCompile Include="src\RaycastRenderingWidget.cpp" />
+    <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\VectorField.cpp" />
+    <ClCompile Include="src\VolumeRenderEntity.cpp" />
+    <ClCompile Include="src\VolumeRenderer.cpp" />
+    <ClCompile Include="src\VolumeShader.cpp" />
     <ClCompile Include="src\Volume.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,12 +192,25 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\DisplayManager.h" />
+    <ClInclude Include="src\Keyboard.h" />
+    <ClInclude Include="src\Loader.h" />
+    <ClInclude Include="src\RenderController.h" />
+    <ClInclude Include="src\MasterRenderer.h" />
+    <ClInclude Include="src\Maths.h" />
+    <ClInclude Include="src\RawModel.h" />
+    <ClInclude Include="src\RaycastRenderingWidget.h" />
     <ClInclude Include="src\BresenhamRayCaster.h" />
     <ClInclude Include="src\CPURenderer.h" />
     <ClInclude Include="generated\ui_MainWindow.h" />
     <ClInclude Include="src\MultiSet.h" />
+    <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\VectorField.h" />
+    <ClInclude Include="src\VolumeRenderEntity.h" />
+    <ClInclude Include="src\VolumeRenderer.h" />
+    <ClInclude Include="src\VolumeShader.h" />
     <ClInclude Include="src\Volume.h" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +236,10 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">generated\ui_%(Filename).h</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">lib\qt\bin\$(Platform)\uic.exe -o generated\ui_%(Filename).h "%(FullPath)"</Command>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\fragmentShader.txt" />
+    <Text Include="res\vertexShader.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

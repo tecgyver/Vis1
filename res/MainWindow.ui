@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -194,7 +197,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QOpenGLWidget" name="openGLWidget">
+   <widget class="RaycastRenderingWidget" name="openGLWidget">
     <property name="geometry">
      <rect>
       <x>9</x>
@@ -204,18 +207,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>991</width>
-      <height>611</height>
-     </rect>
-    </property>
-   </widget>
    <zorder>openGLWidget</zorder>
-   <zorder>graphicsView</zorder>
    <zorder>groupBox</zorder>
    <zorder>labelTop</zorder>
    <zorder>progressBar</zorder>
@@ -255,6 +247,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RaycastRenderingWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>RaycastRenderingWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

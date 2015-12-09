@@ -5,23 +5,19 @@
 #include <QGraphicsPixmapItem>
 #include <qpixmap.h>
 
-
+Ui_MainWindow* MainWindow::m_Ui;
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), m_Volume(0), m_VectorField(0)
 {
 	m_Ui = new Ui_MainWindow();
 	m_Ui->setupUi(this);
-
+	
 	connect(m_Ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFileAction()));
 	connect(m_Ui->actionClose, SIGNAL(triggered()), this, SLOT(closeAction()));
 }
 
 MainWindow::~MainWindow()
 {
-	delete m_renderer;
-	delete m_renderImage;
-	delete m_renderImageItem;
-	delete m_renderImageScene;
 	delete m_Volume;
 	delete m_VectorField;
 	delete m_MultiSet;
@@ -104,37 +100,13 @@ void MainWindow::openFileAction()
 
 void MainWindow::initRendering()
 {
-	delete m_renderer;
-	delete m_renderImage;
-	delete m_renderImageItem;
-	delete m_renderImageScene;
-
-	m_renderer = new CPURenderer();
-	m_renderImage = new QImage(m_Ui->graphicsView->width() - (2 * m_Ui->graphicsView->frameWidth()), m_Ui->graphicsView->height() - (2 * m_Ui->graphicsView->frameWidth()), QImage::Format::Format_RGB888);
-	m_renderImageScene = new QGraphicsScene(m_Ui->graphicsView->sceneRect());
-	m_renderImageItem = new QGraphicsPixmapItem(QPixmap::fromImage(*m_renderImage));
-
-	m_renderImageScene->addItem(m_renderImageItem);
-	m_Ui->graphicsView->setScene(m_renderImageScene);
-	
-
-	//std::cout << m_Ui->graphicsView->width() << std::endl;
-	//std::cout << m_Ui->graphicsView->frameWidth() << std::endl;
-
-	/*
-	m_renderer = new CPURenderer();
-	m_renderImage = new QImage(m_Ui->openGLWidget->width(), m_Ui->openGLWidget->height(), QImage::Format::Format_RGB888);
-	m_renderImageScene = new QGraphicsScene(m_Ui->openGLWidget->sceneRect());
-	m_renderImageItem = new QGraphicsPixmapItem(QPixmap::fromImage(*m_renderImage));
-
-	m_renderImageScene->addItem(m_renderImageItem);
-	m_Ui->graphicsView->setScene(m_renderImageScene);
-	*/
+	m_Ui->openGLWidget->setVolume(m_Volume);
+	m_Ui->openGLWidget->update();
 }
 
 void MainWindow::render()
 {
-	if (m_volumeLoaded)
+	/*if (m_volumeLoaded)
 	{
 		m_renderer->mipEnabled = m_Ui->cb_MIP->isChecked();
 		m_renderer->alphaCompositingEnabled = m_Ui->cb_AlphaCompositing->isChecked();
@@ -148,7 +120,7 @@ void MainWindow::render()
 		m_renderer->sampleAndRender(*m_renderImage, *m_Volume);
 
 		m_renderImageItem->setPixmap(QPixmap::fromImage(*m_renderImage));
-	}
+	}*/
 }
 
 void MainWindow::closeAction()

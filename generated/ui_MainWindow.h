@@ -14,17 +14,16 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QOpenGLWidget>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QWidget>
+#include "RaycastRenderingWidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -46,8 +45,7 @@ public:
     QLabel *label;
     QLabel *label_3;
     QSlider *sl_yTranslate;
-    QOpenGLWidget *openGLWidget;
-    QGraphicsView *graphicsView;
+    RaycastRenderingWidget *openGLWidget;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -55,6 +53,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
+        MainWindow->setWindowModality(Qt::ApplicationModal);
         MainWindow->resize(1192, 700);
         actionOpen = new QAction(MainWindow);
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
@@ -110,15 +109,11 @@ public:
         sl_yTranslate->setValue(50);
         sl_yTranslate->setOrientation(Qt::Horizontal);
         sl_yTranslate->setTickPosition(QSlider::TicksBelow);
-        openGLWidget = new QOpenGLWidget(centralwidget);
+        openGLWidget = new RaycastRenderingWidget(centralwidget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
         openGLWidget->setGeometry(QRect(9, 59, 991, 611));
-        graphicsView = new QGraphicsView(centralwidget);
-        graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(10, 60, 991, 611));
         MainWindow->setCentralWidget(centralwidget);
         openGLWidget->raise();
-        graphicsView->raise();
         groupBox->raise();
         labelTop->raise();
         progressBar->raise();
